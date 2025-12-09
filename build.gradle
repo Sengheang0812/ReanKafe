@@ -15,6 +15,20 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/resources']
+            include '**/*'
+        }
+    }
+}
+
+// Make sure resources are processed
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
 dependencies {
 
     //  Spring Boot Core
@@ -25,6 +39,8 @@ dependencies {
 
     //  Spring Data JPA (REQUIRED for @Entity, JpaRepository)
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     //  MySQL Driver (REQUIRED for database)
     runtimeOnly 'com.mysql:mysql-connector-j'
@@ -44,6 +60,8 @@ dependencies {
     
     //postgressql
     implementation 'org.postgresql:postgresql:42.7.3'
+    
+    
 }
 
 tasks.named('test') {
